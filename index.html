@@ -13,29 +13,10 @@
     h2 {
       color: maroon;
     }
+	
     textarea {
       max-width: 100%;
       height: 200px;
-    }
-	
-    thead {
-    background-color: #F0F8FF;
-    }
-	
-    tbody {
-    background-color: #F0F0F0;
-    }
-	
-    .flex-container {
-    display: flex;
-      flex-wrap: wrap;
-    }
-	
-    .flex-container > div {
-      background-color: #f1f1f1;
-      width: 400px;
-      margin: 10px;
-      text-align: center;
     }
 	
     code {
@@ -44,42 +25,89 @@
       display: block;
       padding: 10px;
     }
+	
+	nav a {
+	  display: block;
+	  color: white;
+	  background-color: #333;
+	  text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+	  float: left;
+	}
+	
+    nav a:hover:not(.active) {
+        background-color: #111;
+    }
+    
+    .active {
+        background-color: #4CAF50;
+    }
   </style>
 </head>
 
 <body>
+
+<nav>
+<a href="https://rene78.github.io/Wikidata-Extractor/">Wikidata-Extractor</a>
+<a class="active" href="https://rene78.github.io/mapmask-geojson-converter/">Mapmask <=> GeoJSON Converter</a>
+</nav>
+<br>
+<br>
+
 <h1>Mapmask <=> GeoJSON</h1>
 
-<textarea id="textareabox" cols="120" rows="20" placeholder="Please paste your mapmask or GeoJSON code here. The tool will convert in both directions."></textarea> <br>
+<textarea id="textareabox" cols="120" rows="20" placeholder="Please paste your mapmask or GeoJSON code here. The tool will convert a GeoJSON polygon into a mapmask or vice versa."></textarea> <br>
 <input type="button" value="Convert to Mapmask/GeoJSON" onclick="checkInput()" />
 
-<p id="infotext"></p>
-<p id="mapshapes"></p>
+<p id="outputCode"></p>
 
 <details>
-  <summary>Help & Forum</summary>
+  <summary>Help</summary>
   <h3>Introduction</h3>
-  <p>blabla
-  </p>
+  <p>This website can be helpful for editors of <a href="https://www.wikivoyage.org/">Wikivoyage</a>. It helps to convert a GeoJSON polygon into a <a href="https://en.wikivoyage.org/wiki/Template:Mapmask/doc">mapmask</a> or vice versa.<br>
+  Just paste the code in the field above and click on <i>Convert</i>.</p>
+  <h3> Example</h3>
+  <h4>Mapmask to GeoJSON</h4>
+  <code>
+  {{Mapmask |48.8940,2.2492 |48.8936,2.2485 |48.8931,2.2493 |48.8929,2.2498 |48.8926,2.2498 |48.8925,2.2506 |48.8935,2.2523 |48.8901,2.2562 |48.8856,2.2516 |48.8868,2.2487 |48.8867,2.2485 |48.8865,2.2483 |48.8863,2.2480 |48.8856,2.2475 |48.8852,2.2469 |48.8867,2.2452 |48.8867,2.2449 |48.8865,2.2445 |48.8856,2.2422 |48.8863,2.2414 |48.8867,2.2421 |48.8868,2.2419 |48.8867,2.2408 |48.8868,2.2399 |48.8857,2.2392 |48.8855,2.2386 |48.8869,2.2368 |48.8866,2.2364 |48.8868,2.2361 |48.8866,2.2356 |48.8869,2.2352 |48.8866,2.2347 |48.8871,2.2340 |48.8877,2.2334 |48.8855,2.2280 |48.8857,2.2277 |48.8857,2.2275 |48.8857,2.2271 |48.8857,2.2268 |48.8856,2.2265 |48.8853,2.2261 |48.8854,2.2244 |48.8881,2.2283 |48.8883,2.2284 |48.8896,2.2307 |48.8898,2.2305 |48.8901,2.2308 |48.8910,2.2299 |48.8913,2.2289 |48.8918,2.2279 |48.8926,2.2271 |48.8941,2.2272 |48.8953,2.2280 |48.8963,2.2288 |48.8965,2.2296 |48.8965,2.2307 |48.8962,2.2325 |48.8959,2.2336 |48.8967,2.2329 |48.8975,2.2317 |48.8978,2.2321 |48.8987,2.2317 |48.8989,2.2326 |48.8979,2.2332 |48.8961,2.2346 |48.8962,2.2350 |48.8976,2.2399 |48.8950,2.2409 |48.8962,2.2434 |48.8959,2.2437 |48.8957,2.2435 |48.8956,2.2434 |48.8954,2.2434 |48.8950,2.2441 |48.8950,2.2443 |48.8954,2.2454 |48.8950,2.2460 |48.8948,2.2455 |48.8936,2.2472 |48.8943,2.2488 |48.8940,2.2492}}
+  </code>
+  <ol>
+    <li>Paste the code above into the textbox and convert it.</li>
+    <li>Copy the result and go to <a href="http://geojson.io">geojson.io</a>.</li>
+    <li>Paste the result in the right field under the </>JSON tab and check the result on the map.</li>
+    <img src="./img/geojson_io.jpg" alt="geojson.io" style="width:100%;max-width:400px;height:auto;border:2px solid red;">
+    <li>Change the properties of the geometry according to your liking (i.e. change the color, add a name, etc.).</li>
+    <li>This GeoJSON file could be saved to Wikimedia Commons and be implemented in a Wikipedia or Wikivoyage map.</li>
+  </ol>
+  
+  <h4>GeoJSON to Mapmask</h4>
+  <code>
+  { "type": "FeatureCollection", "features": [ { "type": "Feature", "properties": {}, "geometry": { "type": "Polygon", "coordinates": [ [ [ 9.479827880859373, 47.64873730307524 ], [ 9.48944091796875, 47.64919987624857 ], [ 9.500598907470703, 47.64434265359565 ], [ 9.509353637695312, 47.63566791825258 ], [ 9.516048431396484, 47.63960064341703 ], [ 9.51141357421875, 47.64492091807296 ], [ 9.50712203979492, 47.650818850092364 ], [ 9.50094223022461, 47.65532858402682 ], [ 9.49836730957031, 47.65914420855326 ], [ 9.493389129638672, 47.66446249265731 ], [ 9.48892593383789, 47.66654341286939 ], [ 9.480857849121092, 47.664578101512106 ], [ 9.481029510498047, 47.66931784410792 ], [ 9.475021362304686, 47.66781504549386 ], [ 9.472789764404297, 47.67197653565626 ], [ 9.461803436279297, 47.678796038106185 ], [ 9.459915161132812, 47.684574579787565 ], [ 9.445323944091797, 47.685152398752045 ], [ 9.442405700683594, 47.679489496903685 ], [ 9.44000244140625, 47.67613769399617 ], [ 9.435882568359375, 47.67324803590928 ], [ 9.432106018066404, 47.66608099332474 ], [ 9.422321319580076, 47.66238148948756 ], [ 9.433822631835938, 47.655559841935634 ], [ 9.44549560546875, 47.65521295468836 ], [ 9.453048706054688, 47.6524377737497 ], [ 9.462146759033203, 47.647118264705576 ], [ 9.471073150634764, 47.649662445325035 ], [ 9.479827880859373, 47.64873730307524 ] ] ] } } ] }
+  </code>
+  <ol>
+    <li>Paste the code above into the textbox and convert it.</li>
+    <li>Copy the result and paste it below the &lt;mapshape&gt; in this <a href="https://en.wikivoyage.org/wiki/User:Renek78/Sandbox/Mapmask_Example">Wikivoyage sandbox article</a> to grey out everything outside of the polygon.</li>
+  </ol>
+  
+  <h3>Improve</h3>
+  <p>If you have ideas on how to make this tool better please head over to the <a href="https://github.com/rene78/mapmask-geojson-converter">github page</a> and participate.</p>
 <script>
 
 function checkInput() {
+//Check, if the input is either a GeoJSON, a mapmask or none of the two and thus invalid
   var input = document.getElementById("textareabox").value;
   if (input.includes("FeatureCollection")) {
-    //console.log("GeoJSON!");
 	createMapmask();
   } else if (input.includes("Mapmask")) {
-    //console.log("Mapmask!");
 	createGeoJSON();
   } else {
-    //console.log("Input not valid!")
 	var error = "<h2>Input not valid!</h2>";
-    document.getElementById("mapshapes").innerHTML=error;
+    document.getElementById("outputCode").innerHTML=error;
   }
 }
 
 function createMapmask() {
-  //var geoJsonInput = '{"type":"FeatureCollection","features":[{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[-3.8671874999999996,49.15296965617042],[14.0625,24.206889622398023],[27.421875,52.05249047600099],[-3.8671874999999996,49.15296965617042]]]}}]}';
   var geoJsonInput = document.getElementById("textareabox").value;
   var myObj = JSON.parse(geoJsonInput);
   var coordinates = myObj.features[0].geometry.coordinates[0];
@@ -90,14 +118,11 @@ function createMapmask() {
   }
   mapmask += coordinates[coordinates.length-1][1].toFixed(4) + "," + coordinates[coordinates.length-1][0].toFixed(4) + "}}";
   
-  //console.log(mapmask);
-  
   var outputTextarea = "<h2>Result</h2><textarea id=textareabox cols=110 rows=30>" + mapmask + "</textarea>";
-  document.getElementById("mapshapes").innerHTML=outputTextarea;
+  document.getElementById("outputCode").innerHTML=outputTextarea;
 }
 
 function createGeoJSON() {
-  //var mapmaskInput = "{{Mapmask |-3.8671874999999996,49.15296965617042 | 14.0625,24.206889622398023 | 27.421875,52.05249047600099 | -3.8671874999999996,49.15296965617042}}";
   var input = document.getElementById("textareabox").value;
   var begCutPoint = input.indexOf("|");
   var endCutPoint = input.indexOf("}");
@@ -109,23 +134,16 @@ function createGeoJSON() {
   for (var i = 0; i < mapmaskTempArray.length; i++) {
     mapmaskArray.push(mapmaskTempArray[i].split(","));
   }
-  //console.log(mapmaskArray[0]);
-    
   var output = '{"type": "FeatureCollection","features": [{"type": "Feature","properties": {},"geometry": {"type": "Polygon","coordinates": [[';
-  //console.log(output);
-  //console.log(res.length);
 
   for (var i = 0; i < mapmaskArray.length-1; i++) {
     output += "[" + mapmaskArray[i][1] + "," + mapmaskArray[i][0] + "],";
   }
   
   output += "[" + + mapmaskArray[mapmaskArray.length-1][1] + "," + mapmaskArray[mapmaskArray.length-1][0] + "]]]}}]}";
-  
-  console.log(output);
-  
+
   var outputTextarea = "<h2>Result</h2><textarea id=textareabox cols=110 rows=30>" + output + "</textarea>";
-  document.getElementById("mapshapes").innerHTML=outputTextarea;
-//  document.getElementById("infotext").innerHTML="xx";
+  document.getElementById("outputCode").innerHTML=outputTextarea;
 }
 </script>
 </body>
