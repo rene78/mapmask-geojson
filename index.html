@@ -87,6 +87,8 @@
     <summary>Help</summary>
     <h3>Introduction</h3>
     <p>This website can be useful for editors of <a href="https://www.wikivoyage.org/">Wikivoyage</a>. It helps to convert a GeoJSON polygon into a <a href="https://en.wikivoyage.org/wiki/Template:Mapmask/doc">mapmask</a> or vice versa. Just paste the GeoJSON code in the field above and click on <i>Convert</i></p>
+    <h3>Video</h3>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/9w9tsCDTvnw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     <h3> Examples</h3>
     <h4>GeoJSON to Mapmask</h4>
     <ol>
@@ -106,9 +108,6 @@
 
     <h3>Improve</h3>
     <p>If you have ideas on how to make this tool better please head over to the <a href="https://github.com/rene78/mapmask-geojson-converter">github page</a> and participate.</p>
-
-    <h3>Video</h3>
-    <p>Coming soon...</p>
   </details>
 
   <script>
@@ -196,7 +195,7 @@
       mapmask += coordinates[coordinates.length-1][1].toFixed(4) + "," + coordinates[coordinates.length-1][0].toFixed(4) + "}}";
       //console.log(mapmask);
 
-      var outputTextarea = "<h2>Result</h2><h3>Mapmask for <i>"+ myObj.properties.title +"</i></h2> <textarea id=textareabox cols=150 rows=30>" + mapmask + "</textarea>";
+      var outputTextarea = "<h2>Result</h2><h3>Mapmask for <i>"+ myObj.properties.title +"</i></h2> <textarea id=textareabox cols=150 rows=30 readonly>" + mapmask + "</textarea>";
       document.getElementById("outputCode").innerHTML=outputTextarea;
 
       //Scroll to map heading so user doesn't have to do it manually
@@ -221,7 +220,7 @@
       }
       
       output += "[" + + mapmaskArray[mapmaskArray.length-1][1] + "," + mapmaskArray[mapmaskArray.length-1][0] + "]]]}}]}";
-      var outputTextarea = "<h2>Result</h2><h3>Mapmask converted to GeoJSON</h3><textarea id=textareabox cols=110 rows=30>" + output + "</textarea>";
+      var outputTextarea = "<h2>Result</h2><h3>Mapmask converted to GeoJSON</h3><textarea id=textareabox cols=110 rows=30 readonly>" + output + "</textarea>";
       document.getElementById("outputCode").innerHTML=outputTextarea;
       addMapwithGeoJson(JSON.parse(output));
       //Scroll to map heading so user doesn't have to do it manually
