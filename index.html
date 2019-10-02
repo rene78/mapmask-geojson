@@ -1,268 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Mapmask ↔ GeoJSON Converter</title>
   <link rel="Shortcut Icon" href="./img/favicon.ico">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
     integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
-    crossorigin=""/>
+    crossorigin="" />
   <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
     integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
     crossorigin=""></script>
-  <script src="example_input.js"></script>
-  <style>
-    body {
-      background-color: linen;
-    }
-
-    img {
-      width: 100%;
-      max-width:400px;
-      height:auto;
-      border:2px solid red;
-    }
-
-    h2 {
-      color: maroon;
-    }
-
-     #mapid {
-       /* height: 400px;*/
-       width: 800px;
-       max-width: 100%;
-     }
-
-     textarea {
-      max-width: 100%;
-      height: 200px;
-    }
-
-    iframe {
-      max-width: 100%;
-    }
-
-    ul.topnav {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      background-color: #333;
-    }
-
-    ul.topnav li {float: left;}
-
-    ul.topnav li a {
-      display: block;
-      color: white;
-      text-align: center;
-      padding: 14px 16px;
-      text-decoration: none;
-    }
-
-    ul.topnav li a:hover:not(.active) {background-color: #111;}
-    
-    ul.topnav li a.active {background-color: #4CAF50;}
-    
-    ul.topnav li.right {float: right;}
-    
-    @media screen and (max-width: 600px) {
-      ul.topnav li.right, 
-      ul.topnav li {float: none;}
-      h1 {text-align: center;}
-    }
-   </style>
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
 </head>
+
 <body>
-  <ul class="topnav">
-    <li><a href="https://rene78.github.io/Wikivoyage-Districtifier/">Wikivoyage Districtifier</a></li>
-    <li><a class="active" href="https://rene78.github.io/mapmask-geojson-converter/">Mapmask ↔ GeoJSON Converter</a></li>
-    <li><a href="https://rene78.github.io/Wikidata-Extractor/">Wikidata-Extractor</a></li>
-  </ul>
-  <br>
-  <textarea id="textareabox" cols="110" rows="30" placeholder="Please paste your mapmask or GeoJSON code here. The tool will convert one or multiple GeoJSON polygons into a mapmask or vice versa." autofocus></textarea> <br>
-  <input type="button" value="Convert to Mapmask/GeoJSON" onclick="checkInput()" />
-  <p id="mapheading"></p>
-  <div id="mapid"></div>
-  <div id="outputCode"></div>
+  <div w3-include-html="navbar.html"></div>
+  <main>
+    <textarea id="textareabox" cols="110" rows="30"
+      placeholder="Please paste your mapmask or GeoJSON code here. The tool will convert one or multiple GeoJSON polygons into a mapmask or vice versa."
+      autofocus></textarea> <br>
+    <input type="button" value="Convert to Mapmask/GeoJSON" onclick="checkInput()" />
+    <p id="mapheading"></p>
+    <div id="mapid"></div>
+    <div id="outputCode"></div>
 
-  <details>
-    <summary>Help</summary>
-    <h3>Introduction</h3>
-    <p>This website can be useful for editors of <a href="https://www.wikivoyage.org/">Wikivoyage</a>. It helps to convert a GeoJSON polygon into a <a href="https://en.wikivoyage.org/wiki/Template:Mapmask/doc">mapmask</a> or vice versa. Just paste the GeoJSON code in the field above and click on <i>Convert</i></p>
-    <h3>Video</h3>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/9w9tsCDTvnw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    <h3> Examples</h3>
-    <h4>GeoJSON to Mapmask</h4>
-    <ol>
-      <li>Paste some example GeoJSON code into the textbox above.</li><input type="button" value="Do it!" id="exampleGeoJson" onclick="copyToTextarea(this.id)"> (Note: Code was taken straight from <a href="https://commons.wikimedia.org/wiki/Data:Amsterdam_Districts.map">Commons</a>.)
-      <li>Click on Convert. A map with the districts will show up. Select any polygon on the map to convert it to mapmask.</li>
-      <li>Use this code in a Wikivoyage article to grey out everything beyond the district border of a certain article.</li>
-    </ol>
-    <h4>Mapmask to GeoJSON</h4>
-    <ol>
-      <li>Paste some example Mapmask code into the textbox above.</li><input type="button" value="Do it!" id="exampleMapmask" onclick="copyToTextarea(this.id)">
-      <li>Click on Convert. The polygon of the mapmask will be shown on the map. Copy the result in the textarea below the map and go to <a href="http://geojson.io">geojson.io</a>.</li>
-      <li>Paste the result in the right field under the JSON tab and check the result on the map.</li>
-      <img src="./img/geojson_io.jpg" alt="geojson.io">
-      <li>Change the properties of the geometry according to your liking (i.e. change the color, add a name, etc.).</li>
-      <li>This GeoJSON file could be saved to Wikimedia Commons and be implemented in a Wikipedia or Wikivoyage map.</li>
-    </ol>
+    <details>
+      <summary>Help</summary>
+      <h3>Introduction</h3>
+      <p>This website can be useful for editors of <a href="https://www.wikivoyage.org/">Wikivoyage</a>. It helps to
+        convert a GeoJSON polygon into a <a href="https://en.wikivoyage.org/wiki/Template:Mapmask/doc">mapmask</a> or
+        vice
+        versa. Just paste the GeoJSON code in the field above and click on <i>Convert</i></p>
+      <h3>Video</h3>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/9w9tsCDTvnw" frameborder="0"
+        allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      <h3> Examples</h3>
+      <h4>GeoJSON to Mapmask</h4>
+      <ol>
+        <li>Paste some example GeoJSON code into the textbox above.</li><input type="button" value="Do it!"
+          id="exampleGeoJson" onclick="copyToTextarea(this.id)"> (Note: Code was taken straight from <a
+          href="https://commons.wikimedia.org/wiki/Data:Amsterdam_Districts.map">Commons</a>.)
+        <li>Click on Convert. A map with the districts will show up. Select any polygon on the map to convert it to
+          mapmask.</li>
+        <li>Use this code in a Wikivoyage article to grey out everything beyond the district border of a certain
+          article.
+        </li>
+      </ol>
+      <h4>Mapmask to GeoJSON</h4>
+      <ol>
+        <li>Paste some example Mapmask code into the textbox above.</li><input type="button" value="Do it!"
+          id="exampleMapmask" onclick="copyToTextarea(this.id)">
+        <li>Click on Convert. The polygon of the mapmask will be shown on the map. Copy the result in the textarea below
+          the map and go to <a href="http://geojson.io">geojson.io</a>.</li>
+        <li>Paste the result in the right field under the JSON tab and check the result on the map.</li>
+        <img src="./img/geojson_io.jpg" alt="geojson.io">
+        <li>Change the properties of the geometry according to your liking (i.e. change the color, add a name, etc.).
+        </li>
+        <li>This GeoJSON file could be saved to Wikimedia Commons and be implemented in a Wikipedia or Wikivoyage map.
+        </li>
+      </ol>
 
-    <h3>Improve</h3>
-    <p>If you have ideas on how to make this tool better please head over to the <a href="https://github.com/rene78/mapmask-geojson-converter">github page</a> and participate.</p>
-  </details>
-
-  <script>
-    //checkInput();
-    //createGeoJSON();
-    //addMapwithGeoJson(extGeojson);
-
-    //Execute function after pressing the return key
-    document.querySelector("#textareabox").addEventListener("keyup", event => {
-      event.preventDefault();
-      if(event.key !== "Enter") return;
-      checkInput();
-    });
-
-    //Check, if the input is either a GeoJSON, a GeoJSON from Wikimedia Commons with an extra "data" property, a mapmask or none of the 3 and thus invalid
-    function checkInput() {
-      purge();
-      var input = document.getElementById("textareabox").value;
-      var myObj;
-
-      if (input.includes("FeatureCollection") && input.includes("data")) {
-        console.log("GeoJSON from Commons!");
-        myObj = JSON.parse(input).data;
-        document.getElementById("mapheading").innerHTML="<h2>Select area of which to create mapmask</h2>"
-        addMapwithGeoJson(myObj);
-      } else if (input.includes("FeatureCollection")) {
-        console.log("Standard GeoJSON!");
-        myObj = JSON.parse(input);
-        document.getElementById("mapheading").innerHTML="<h2>Select area of which to create mapmask</h2>"
-        addMapwithGeoJson(myObj);
-      } else if (input.includes("Mapmask")) {
-        console.log("Mapmask!");
-        createGeoJSON(input);
-      } else {
-      var error = "<h2>Input not valid!</h2>";
-        document.getElementById("mapid").innerHTML=error;
-      }
-    }
-
-    function addMapwithGeoJson (distrGeoJson) {
-      //Add a Leaflet map to the page
-      var mymap = L.map('mapid').setView([0, 0], 11);
-
-      L.tileLayer('https://a.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-      maxZoom: 18
-      }).addTo(mymap);
-
-      var jsonLayer = L.geoJSON(distrGeoJson, {
-        onEachFeature: onEachFeature,
-        //Color the Leaflet map similar to the GeoJSON
-        style: function(feature) {
-          color = feature.properties.fill; 
-          console.log(color);
-          return {"fillColor": color, "opacity": 1, "fillOpacity": 0.7, "color": "#555555", "weight": 2};
-        }
-        
-      })
-      //Add the JSON layer to the map
-      jsonLayer.addTo(mymap);
-      //Center and zoom the map on the provided GeoJSON
-      mymap.fitBounds(jsonLayer.getBounds());
-
-      //Start the conversion to a mapmask, if a feature (e.g. a district) is clicked.
-      function onEachFeature(feature, layer) {
-        //bind click
-        layer.on('click', function (e) {
-          //e=event
-          //console.log(e);
-          //console.log(feature.properties.title);
-          //console.log("Anzahl der Koordinaten: " +feature.geometry.coordinates[0].length);
-          //console.log("Hier sind die Koordinaten gespeichert: " +feature.geometry.coordinates[0][0][0]);
-          createMapmask(feature);
-        });
-      }
-    }
-
-    function createMapmask(myObj) {
-      var coordinates = myObj.geometry.coordinates[0];
-      var mapmask = "{{Mapmask|";
-      
-      for (var i = 0; i < coordinates.length-1; i++) {
-        mapmask += coordinates[i][1].toFixed(4) + "," + coordinates[i][0].toFixed(4) +"|";
-      }
-      mapmask += coordinates[coordinates.length-1][1].toFixed(4) + "," + coordinates[coordinates.length-1][0].toFixed(4) + "}}";
-      //console.log(mapmask);
-
-      var outputTextarea = "<h2>Result</h2><h3>Mapmask for <i>"+ myObj.properties.title +"</i></h2> <textarea id=textareabox cols=150 rows=30 readonly>" + mapmask + "</textarea>";
-      document.getElementById("outputCode").innerHTML=outputTextarea;
-
-      //Scroll to map heading so user doesn't have to do it manually
-      document.getElementById("mapheading").scrollIntoView();
-    }
-
-    function createGeoJSON(input) {
-      //var input=mapmask;
-      //var input = document.getElementById("textareabox").value;
-      var begCutPoint = input.indexOf("|");
-      var endCutPoint = input.indexOf("}");
-      var mapmaskString = input.substring(begCutPoint+1,endCutPoint);
-      var mapmaskTempArray = mapmaskString.split("|");
-      var mapmaskArray = [];
-      
-      for (var i = 0; i < mapmaskTempArray.length; i++) {
-        mapmaskArray.push(mapmaskTempArray[i].split(","));
-      }
-      var output = '{"type": "FeatureCollection","features": [{"type": "Feature","properties": {},"geometry": {"type": "Polygon","coordinates": [[';
-      for (var i = 0; i < mapmaskArray.length-1; i++) {
-        output += "[" + mapmaskArray[i][1] + "," + mapmaskArray[i][0] + "],";
-      }
-      
-      output += "[" + + mapmaskArray[mapmaskArray.length-1][1] + "," + mapmaskArray[mapmaskArray.length-1][0] + "]]]}}]}";
-      var outputTextarea = "<h2>Result</h2><h3>Mapmask converted to GeoJSON</h3><textarea id=textareabox cols=110 rows=30 readonly>" + output + "</textarea>";
-      document.getElementById("outputCode").innerHTML=outputTextarea;
-      addMapwithGeoJson(JSON.parse(output));
-      //Scroll to map heading so user doesn't have to do it manually
-      document.getElementById("mapheading").scrollIntoView();
-    }
-
-    function purge() {
-      //Replace current map container ("mapid") with an empty one. Else Leaflet error "container already intitialized", when 2nd map loaded.
-      var newdiv = document.createElement("div");
-      newdiv.setAttribute("id", "mapid");
-      var oldDiv = document.getElementById("mapid");
-      document.body.replaceChild(newdiv,oldDiv);
-
-      //Purge the content of all div and p elements.
-      document.getElementById("mapheading").innerHTML="";
-      document.getElementById("mapid").innerHTML="";
-      document.getElementById("outputCode").innerHTML="";
-
-      //Set the height of the "mapid" container only here, so that the "Help" link isn't out of view for the user, when loading the page.
-      var mapHeight = document.querySelector("#mapid");
-      mapHeight.style.setProperty("height", "400px");
-    }
-
-    function copyToTextarea(clickedId) {
-      var input;
-      if (clickedId=="exampleGeoJson") {
-        //console.log("Beispiel GeoJSON!");
-        input = JSON.stringify(exampleGeojson);
-      } else {
-        //console.log("Beispiel Mapmask!");
-        input = exampleMapmask;
-      }
-      document.getElementById("textareabox").value=input;
-      //Scroll to "mainHeading" so user doesn't have to do it manually
-      document.getElementById("mainHeading").scrollIntoView();
-    }
-
-  </script>
+      <h3>Improve</h3>
+      <p>If you have ideas on how to make this tool better please head over to the <a
+          href="https://github.com/rene78/mapmask-geojson-converter">github page</a> and participate.</p>
+    </details>
+  </main>
+  <script src="main.js"></script>
+  <script src="example_input.js"></script>
 </body>
+
 </html>
