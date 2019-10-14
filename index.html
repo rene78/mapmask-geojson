@@ -31,8 +31,7 @@
       <h3>Introduction</h3>
       <p>This website can be useful for editors of <a href="https://www.wikivoyage.org/">Wikivoyage</a>. It helps to
         convert a GeoJSON polygon into a <a href="https://en.wikivoyage.org/wiki/Template:Mapmask/doc">mapmask</a> or
-        vice
-        versa. Just paste the GeoJSON code in the field above and click on <i>Convert</i></p>
+        vice versa. Just paste the GeoJSON/mapmask code in the field above and click on <i>Convert</i></p>
       <h3>Video</h3>
       <iframe width="560" height="315" src="https://www.youtube.com/embed/9w9tsCDTvnw" frameborder="0"
         allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -42,24 +41,18 @@
         <li>Paste some example GeoJSON code into the textbox above.</li><input type="button" value="Do it!"
           id="exampleGeoJson" onclick="copyToTextarea(this.id)"> (Note: Code was taken straight from <a
           href="https://commons.wikimedia.org/wiki/Data:Amsterdam_Districts.map">Commons</a>.)
-        <li>Click on Convert. A map with the districts will show up. Select any polygon on the map to convert it to
-          mapmask.</li>
-        <li>Use this code in a Wikivoyage article to grey out everything beyond the district border of a certain
-          article.
-        </li>
+        <li>Click on Convert. A map with the districts will show up. Select any polygon on the map to convert it to mapmask.</li>
+        <li>Use this code in a Wikivoyage article to grey out everything beyond the district border of a certainarticle.</li>
       </ol>
       <h4>Mapmask to GeoJSON</h4>
       <ol>
         <li>Paste some example Mapmask code into the textbox above.</li><input type="button" value="Do it!"
           id="exampleMapmask" onclick="copyToTextarea(this.id)">
-        <li>Click on Convert. The polygon of the mapmask will be shown on the map. Copy the result in the textarea below
-          the map and go to <a href="http://geojson.io">geojson.io</a>.</li>
-        <li>Paste the result in the right field under the JSON tab and check the result on the map.</li>
+        <li>Click on Convert. The polygon of the mapmask will be shown on the map. Copy the result in the textarea below the map.</li>
+        <li>Go to <a href="http://geojson.io">geojson.io</a> and paste the result in the right field under the JSON tab and check the result on the map.</li>
         <img src="./img/geojson_io.jpg" alt="geojson.io">
-        <li>Change the properties of the geometry according to your liking (i.e. change the color, add a name, etc.).
-        </li>
-        <li>This GeoJSON file could be saved to Wikimedia Commons and be implemented in a Wikipedia or Wikivoyage map.
-        </li>
+        <li>Change the properties of the geometry according to your liking (i.e. change the color, add a title, etc.).</li>
+        <li>This GeoJSON file could be saved to Wikimedia Commons and be implemented in a Wikipedia or Wikivoyage map.</li>
       </ol>
 
       <h3>Improve</h3>
