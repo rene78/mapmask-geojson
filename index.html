@@ -23,8 +23,8 @@
   <main>
     <textarea id="textareabox" cols="110" rows="30"
       placeholder="Please paste your mapmask or GeoJSON code here. The tool will convert one or multiple GeoJSON polygons into a mapmask or vice versa."
-      autofocus></textarea> <br>
-    <input type="button" value="Convert to Mapmask/GeoJSON" onclick="checkInput()" />
+      autofocus></textarea>
+    <input type="button" class="button" value="Convert to Mapmask/GeoJSON" onclick="checkInput()" />
     <p id="mapheading"></p>
     <div id="mapid"></div>
     <div id="outputCode"></div>
@@ -41,16 +41,17 @@
       <h3> Examples</h3>
       <h4>GeoJSON to Mapmask</h4>
       <ol>
-        <li>Paste some example GeoJSON code into the textbox above.</li><input type="button" value="Do it!"
-          id="exampleGeoJson" onclick="copyToTextarea(this.id)"> (Note: Code was taken straight from <a
-          href="https://commons.wikimedia.org/wiki/Data:Amsterdam_Districts.map">Commons</a>.)
+        <li>Paste some example GeoJSON code into the textbox above: <input type="button" value="Paste example GeoJSON"
+          id="exampleGeoJson" onclick="copyToTextarea(this.id)">
+          (Note: Code was taken straight from <a
+          href="https://commons.wikimedia.org/wiki/Data:Amsterdam_Districts.map">Commons</a>.)</li>
         <li>Click on Convert. A map with the districts will show up. Select any polygon on the map to convert it to mapmask.</li>
         <li>Use this code in a Wikivoyage article to grey out everything beyond the district border of a certainarticle.</li>
       </ol>
       <h4>Mapmask to GeoJSON</h4>
       <ol>
-        <li>Paste some example Mapmask code into the textbox above.</li><input type="button" value="Do it!"
-          id="exampleMapmask" onclick="copyToTextarea(this.id)">
+        <li>Paste some example Mapmask code into the textbox above: <input type="button" value="Paste example Mapmask"
+          id="exampleMapmask" onclick="copyToTextarea(this.id)"> </li>
         <li>Click on Convert. The polygon of the mapmask will be shown on the map. Copy the result in the textarea below the map.</li>
         <li>Go to <a href="http://geojson.io">geojson.io</a> and paste the result in the right field under the JSON tab and check the result on the map.</li>
         <img src="./img/geojson_io.jpg" alt="geojson.io">
